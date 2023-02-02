@@ -1,18 +1,14 @@
 import express from 'express'
 import fetch from 'node-fetch'
-import axios from 'axios'
-import { STATUS_CODES } from 'http';
 import cors from 'cors'
-import buildReader, { readable } from './Stream/buildReader';
+import { readable } from './Stream/buildReader';
 import { log } from 'console';
 
 import * as fs from 'fs'
 import './Mongo/connect';
 import { movies } from './Mongo/connect';
-// import http from 'http'
-// import { Server } from 'socket.io'
+import './Stream/socketio'
 var app = express()
-// const http = require('http').Server(app);
 
 const PORT = '3100'
 app.use(cors({
@@ -95,7 +91,7 @@ app.get('/build1', async (req, res) => {
     log('program')
 })
 app.get('/todos', (req, res) => {
-    console.log(`Request - ${req.hostname}`);
+    console.log(`Request - ${JSON.stringify(req.headers)}`);
     const details = getTodos()
     res.send(details)
 
