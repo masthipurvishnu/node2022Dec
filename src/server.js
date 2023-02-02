@@ -1,8 +1,8 @@
 import express from "express";
 var app = express()
-
-const server = app.listen(3002, () => {
-    console.log(`Server listning from port ${3002}..`, server.address())
+const PORT = '3100'
+const server = app.listen(PORT, () => {
+    console.log(`Server listning from port ${PORT}..`, server.address())
 })
 
 app.get('/', (req, res) => {
